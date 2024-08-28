@@ -65,3 +65,4 @@ C:\Users\AMR\Desktop\Work Tasks\DotNETFunctions\DotNETFunctions\obj\Debug\net8.0
 C:\Users\AMR\Desktop\Work Tasks\DotNETFunctions\DotNETFunctions\obj\Debug\net8.0\DotNETFunctions.genruntimeconfig.cache
 C:\Users\AMR\Desktop\Work Tasks\DotNETFunctions\DotNETFunctions\obj\Debug\net8.0\ref\DotNETFunctions.dll
 C:\Users\AMR\Desktop\Work Tasks\DotNETFunctions\DotNETFunctions\bin\Debug\net8.0\BouncyCastle.Crypto.dll
+C:\Users\AMR\Desktop\Work Tasks\DotNETFunctions\DotNETFunctions\obj\Debug\net8.0\DotNETFunctions.sourcelink.json

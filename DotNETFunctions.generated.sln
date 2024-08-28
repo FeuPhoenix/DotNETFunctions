@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNETFunctions", "DotNETFunctions.csproj", "{DF8B4BDA-1565-4CD7-AD66-FD4654F5D342}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNETFunctions", "DotNETFunctions.csproj", "{501AD5BE-06DF-420A-8F06-B439178F129E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DF8B4BDA-1565-4CD7-AD66-FD4654F5D342}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF8B4BDA-1565-4CD7-AD66-FD4654F5D342}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF8B4BDA-1565-4CD7-AD66-FD4654F5D342}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF8B4BDA-1565-4CD7-AD66-FD4654F5D342}.Release|Any CPU.Build.0 = Release|Any CPU
+		{501AD5BE-06DF-420A-8F06-B439178F129E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{501AD5BE-06DF-420A-8F06-B439178F129E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{501AD5BE-06DF-420A-8F06-B439178F129E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{501AD5BE-06DF-420A-8F06-B439178F129E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
