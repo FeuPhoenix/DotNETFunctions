@@ -1,0 +1,39 @@
+@model List<FileViewModel>
+@{
+    ViewData["Title"] = "Download Files";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/download.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+<body>
+    <div class="container">
+        <h2>Downloaded Files</h2>
+        <ul class="list-group">
+            @foreach (var file in Model)
+            {
+                <li class="list-group-item">
+                    <div class="file-info">
+                        <span class="file-name">@file.FileName</span>
+                        <span class="upload-time">Uploaded on: @file.UploadTime.ToString("yyyy-MM-dd HH:mm:ss")</span>
+                    </div>
+                    <a asp-action="DownloadFile" asp-route-fileName="@file.FileName" class="btn btn-primary btn-sm download-btn">
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                </li>
+            }
+        </ul>
+        <div class="mt-4">
+            <a asp-action="Upload" class="btn btn-secondary">
+                <i class="fas fa-upload"></i> Upload More Files
+            </a>
+        </div>
+    </div>
+</body>
+</html>

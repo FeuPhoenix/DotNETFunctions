@@ -1,0 +1,138 @@
+@model DotNETFunctions.Models.FileUploadModel
+@{
+    ViewData["Title"] = "File Upload";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/upload.css" asp-append-version="true" />
+</head>
+<body>
+<h2>File Upload</h2>
+
+<form asp-action="Upload" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="IsVipUser" class="control-label"></label>
+        <input asp-for="IsVipUser" class="form-check-input" />
+    </div>
+
+    <div id="fileInputs">
+        <div class="form-group">
+            <label asp-for="FinancialFile" class="control-label"></label>
+            <input asp-for="FinancialFile" type="file" class="form-control" />
+            <span asp-validation-for="FinancialFile" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="TechnicalFile" class="control-label"></label>
+            <input asp-for="TechnicalFile" type="file" class="form-control" />
+            <span asp-validation-for="TechnicalFile" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="BankGuaranteeFile" class="control-label"></label>
+            <input asp-for="BankGuaranteeFile" type="file" class="form-control" id="bankGuaranteeFile" />
+            <span asp-validation-for="BankGuaranteeFile" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div id="bankGuaranteeDetails" style="display: none;">
+        <div class="form-group">
+            <label asp-for="BankName" class="control-label"></label>
+            <input asp-for="BankName" class="form-control" />
+            <span asp-validation-for="BankName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="GuaranteeExpiryDate" class="control-label"></label>
+            <input asp-for="GuaranteeExpiryDate" class="form-control" type="date" />
+            <span asp-validation-for="GuaranteeExpiryDate" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="GuaranteeAmount" class="control-label"></label>
+            <input asp-for="GuaranteeAmount" class="form-control" id="guaranteeAmount" />
+            <span asp-validation-for="GuaranteeAmount" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Upload" class="btn btn-primary" />
+    </div>
+</form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#bankGuaranteeFile').change(function() {
+            if ($(this).val()) {
+                $('#bankGuaranteeDetails').show();
+            } else {
+                $('#bankGuaranteeDetails').hide();
+            }
+        });
+
+        $('#guaranteeAmount').on('input', function(e) {
+            var value = e.target.value;
+            
+            // Remove all non-digit characters
+            value = value.replace(/\D/g, '');
+            
+            // Format number with commas
+            value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            
+            // Update the input value
+            $(this).val(value);
+        });
+
+        // Custom validation method for guarantee amount
+        $.validator.addMethod("guaranteeAmount", function(value, element) {
+            return this.optional(element) || /^(?:\d{1,3}(?:,\d{3})*|\d+)$/.test(value);
+        }, "Please enter a valid amount with thousand separators.");
+
+        // Add validation rule to the form
+        $("form").validate({
+            rules: {
+                GuaranteeAmount: {
+                    required: true,
+                    guaranteeAmount: true
+                }
+            },
+            messages: {
+                GuaranteeAmount: {
+                    required: "Please enter the guarantee amount.",
+                    guaranteeAmount: "Please enter a valid amount with thousand separators."
+                }
+            }
+        });
+
+        $('input[type="file"]').on('change', function() {
+            var fileInput = $(this)[0];
+            var file = fileInput.files[0];
+            var maxSize = $(this).attr('id') === 'BankGuaranteeFile' ? 5 * 1024 * 1024 : 10 * 1024 * 1024;
+            
+            if (file) {
+                if (file.size > maxSize) {
+                    alert('File is too large. Maximum size is ' + (maxSize / (1024 * 1024)) + 'MB.');
+                    fileInput.value = '';
+                } else if (!file.name.toLowerCase().endsWith('.pdf')) {
+                    alert('Only PDF files are allowed.');
+                    fileInput.value = '';
+                }
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
